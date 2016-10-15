@@ -1,0 +1,16 @@
+{
+  "data": [
+    {
+      "name": "Tシャツ",
+      "description": "サイズは3サイズくらいあります。白と黒があるです。",
+      "value": "3,000",
+      "img": "tshirt.jpg"
+    },
+    {
+      "name": "ステッカー",
+      "description": "冷蔵庫や電柱に貼れます。",
+      "value": "500",
+      "img": "sticker.jpg"
+    }
+  ]
+}

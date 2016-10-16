@@ -77,10 +77,29 @@ nav {
 
 .item-container {
   padding-bottom: 20px;
+  position: relative;
+}
+
+.image-cover {
+  background: black;
 }
 
 .item-image {
   width: 100%;
+  opacity: 0.4;
+}
+
+img.item-image.materialboxed.initialized.active {
+  opacity: 1;
+}
+
+.image-caption {
+  position: absolute;
+  text-align: center;
+  top: 33%;
+  width: 100%;
+  font-weight: bold;
+  color: white;
 }
 
 footer {

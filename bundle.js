@@ -2126,7 +2126,7 @@
 	  view: function view(vnode) {
 	    var datas = vnode.state.datas;
 	    return (0, _mithril2.default)('div#item', datas.map(function (data) {
-	      return (0, _mithril2.default)('div.item-container', [(0, _mithril2.default)('b', data.name), (0, _mithril2.default)('span', ' \xA5' + data.value), (0, _mithril2.default)('br'), (0, _mithril2.default)('span', data.description), (0, _mithril2.default)('img.item-image.materialboxed[src=static/img/' + data.img + ']')]);
+	      return (0, _mithril2.default)('div.item-container', [(0, _mithril2.default)('div.image-cover', [(0, _mithril2.default)('img.item-image.materialboxed[src=static/img/' + data.img + ']')]), (0, _mithril2.default)('h2.image-caption', (0, _mithril2.default)('span', data.name)), (0, _mithril2.default)('div', ' ' + data.value + 'yen'), (0, _mithril2.default)('div', data.description)]);
 	    }));
 	  }
 	};

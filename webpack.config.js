@@ -1,5 +1,6 @@
 'use strict';
 var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
   context: __dirname + '/src',
@@ -22,5 +23,8 @@ module.exports = {
         test: /\.json$/
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin()
+  ]
 };

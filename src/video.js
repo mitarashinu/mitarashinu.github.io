@@ -39,7 +39,7 @@ const Row = {
   view: function(vnode) {
     const data = vnode.state.data;
     return m('li', [
-      m('div.collapsible-header', {onclick: vnode.state.onclick}, [m('i.material-icons', 'video_library')], `${data.date} ${data.at}`),
+      m('div.collapsible-header', {onclick: vnode.state.onclick}, [m('i.material-icons', 'video_library')], `${data.date}@${data.at}`),
       m('div.collapsible-body', vnode.state.clicked() ? m(IFrame, {data}) : m(Dummy))
     ]);
   }

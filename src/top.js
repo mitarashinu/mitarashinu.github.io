@@ -10,7 +10,7 @@ export default {
       return m('div.news-container', [
         m('h4.news-date', data.date),
         m('h5.news-title', m('i.material-icons', 'turned_in'), data.title),
-        m('div.news-text', data.text)
+        m('div.news-text', m.trust(data.text))
       ]);
     }));
   }

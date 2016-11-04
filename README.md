@@ -1,5 +1,5 @@
 # mitarashinu.github.io
-This is portfolio for japanese band named "見たら死ぬ".
+This github pages is for japanese band named "見たら死ぬ".
 
 # How to set up
 1. Clone this repository.
@@ -14,7 +14,7 @@ This is portfolio for japanese band named "見たら死ぬ".
 Done!🍣
 
 # How to edit content for every page
-Every resources are at `src/data`. You can choice JSON file to update. 
+Every resources are at `src/data`. You can find JSON file to update. 
 
 - Top: Edit `src/data/top-01.json`.
 - About: Edit `src/data/about.json`.
@@ -29,6 +29,6 @@ And ensure that your change has been reflected.
 For example `python -m http.server` etc... Up to you.
 
 # How to expose latest page
-Only you to do is just `git push origin master`!!!
+All need is just `git push origin master`.
 
-Be Happy!!!!
+Be Happy🍺

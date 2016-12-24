@@ -23,11 +23,11 @@ const Dummy = {
 
 const Row = {
   oninit: function(vnode) {
-    vnode.state.clicked = m.prop(false);
+    vnode.state.clicked = false;
     vnode.state.data = vnode.attrs.data;
     vnode.state.onclick = function(ev) {
-      if(!vnode.state.clicked()) {
-        vnode.state.clicked(true);
+      if(!vnode.state.clicked) {
+        vnode.state.clicked = true;
       }
     };
   },
@@ -40,7 +40,7 @@ const Row = {
     const data = vnode.state.data;
     return m('li', [
       m('div.collapsible-header', {onclick: vnode.state.onclick}, [m('i.material-icons', 'video_library')], `${data.date}@${data.at}`),
-      m('div.collapsible-body', vnode.state.clicked() ? m(IFrame, {data}) : m(Dummy))
+      m('div.collapsible-body', vnode.state.clicked ? m(IFrame, {data}) : m(Dummy))
     ]);
   }
 }

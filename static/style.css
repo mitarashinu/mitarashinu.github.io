@@ -117,3 +117,7 @@ footer {
   font-size: 8pt;
   text-align: center;
 }
+
+#footer-icons a {
+  margin: 0 2px 0 2px;
+}

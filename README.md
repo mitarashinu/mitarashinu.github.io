@@ -9,12 +9,12 @@ This github pages is for japanese band named "見たら死ぬ".
 
 2. Prepare to build JavaScript.
 
-`npm i`
+`npm i` or `yarn install`
 
 Done!🍣
 
 # How to edit content for every page
-Every resources are at `src/data`. You can find JSON file to update. 
+Every resources are at `src/data`. You can find JSON file to update.
 
 - Top: Edit `src/data/top-01.json`.
 - About: Edit `src/data/about.json`.
@@ -23,8 +23,14 @@ Every resources are at `src/data`. You can find JSON file to update.
 
 EASY!
 
+# How to add data
+`data.py` is a script for adding new data.
+NOTE: Now this script allows only a `video` data.
+
+Run `python data.py video` and input every information.
+
 # How to build
-Run `npm run build`. 
+Run `npm run build`.
 And ensure that your change has been reflected.
 For example `python -m http.server` etc... Up to you.
 

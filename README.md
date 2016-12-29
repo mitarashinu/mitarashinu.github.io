@@ -2,14 +2,14 @@
 This github pages is for japanese band named "見たら死ぬ".
 
 # How to set up
-1. Clone this repository.
+At first, clone this repository.
 
 ```
 $ git clone git@github.com:mitarashinu/mitarashinu.github.io
-$ cd mitarashinu.github.io`
+$ cd mitarashinu.github.io
 ```
 
-2. Prepare to build JavaScript.
+Next, prepare to build JavaScript.
 
 `npm i` or `yarn install`
 
@@ -34,7 +34,8 @@ Run `python data.py video` and input every information.
 
 # How to build
 1. Run `npm run build`.
-1. Ensure that your change has been reflected. For example `python -m http.server` etc... Up to you.
+
+1. Ensure that your change has been reflected. For example `python -m http.server` etc. Up to you.
 
 # How to expose latest page
 All need is just `git push origin master`.

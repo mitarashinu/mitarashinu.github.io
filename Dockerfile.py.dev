@@ -1,0 +1,6 @@
+FROM python:alpine
+
+RUN mkdir /source
+WORKDIR /source
+
+ENTRYPOINT ["sh", "entrypoint.py.sh"]

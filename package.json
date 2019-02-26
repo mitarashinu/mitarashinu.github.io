@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "watch:elm": "elm-live --port 55301 --start-page=index.dev.html -- src/Main.elm --output dev-dist/app.js --debug",
-    "watch:sass": "node-sass -rw style --source-map true -o ../dist/stylesheets",
+    "watch:sass": "node-sass -rw style --source-map true -o dist/stylesheets",
     "build:elm": "elm make src/Main.elm --output dist/app.js",
-    "build:sass": "node-sass --omit-source-map-url -r --output-style compressed style/app.scss ../dist/stylesheets/app.css",
+    "build:sass": "node-sass --omit-source-map-url -r --output-style compressed style/app.scss dist/stylesheets/app.css",
     "build": "npm-run-all -p build:elm build:sass",
     "watch": "npm-run-all -p watch:elm watch:sass",
     "test": "elm-test"
@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/mitarashinu/mitarashinu.github.io#readme",
   "devDependencies": {
+    "bulma": "^0.7.4",
     "elm": "^0.19.0-bugfix6",
     "elm-format": "^0.8.1",
     "elm-live": "^3.4.0",

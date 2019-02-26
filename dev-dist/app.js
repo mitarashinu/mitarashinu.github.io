@@ -5605,6 +5605,18 @@ var surprisetalk$elm_bulma$Bulma$Components$navbarStart = A2(
 	'div',
 	_List_fromArray(
 		[surprisetalk$elm_bulma$Bulma$Classes$navbarStart]));
+var surprisetalk$elm_bulma$Bulma$Classes$container = elm$html$Html$Attributes$class('container');
+var surprisetalk$elm_bulma$Bulma$Layout$container = A2(
+	surprisetalk$elm_bulma$Helpers$node,
+	'div',
+	_List_fromArray(
+		[surprisetalk$elm_bulma$Bulma$Classes$container]));
+var surprisetalk$elm_bulma$Bulma$Classes$footer = elm$html$Html$Attributes$class('footer');
+var surprisetalk$elm_bulma$Bulma$Layout$footer = A2(
+	surprisetalk$elm_bulma$Helpers$node,
+	'footer',
+	_List_fromArray(
+		[surprisetalk$elm_bulma$Bulma$Classes$footer]));
 var surprisetalk$elm_bulma$Bulma$Modifiers$Light = {$: 'Light'};
 var surprisetalk$elm_bulma$Bulma$Modifiers$Top = {$: 'Top'};
 var author$project$Main$wrapperView = function () {
@@ -5616,65 +5628,78 @@ var author$project$Main$wrapperView = function () {
 			elm$core$List$repeat,
 			3,
 			A2(elm$html$Html$span, _List_Nil, _List_Nil)));
-	return A4(
-		surprisetalk$elm_bulma$Bulma$Components$fixedNavbar,
-		surprisetalk$elm_bulma$Bulma$Modifiers$Top,
-		_Utils_update(
-			surprisetalk$elm_bulma$Bulma$Components$navbarModifiers,
-			{color: surprisetalk$elm_bulma$Bulma$Modifiers$Light}),
+	return A2(
+		surprisetalk$elm_bulma$Bulma$Layout$container,
 		_List_Nil,
 		_List_fromArray(
 			[
-				A3(
-				surprisetalk$elm_bulma$Bulma$Components$navbarBrand,
+				A4(
+				surprisetalk$elm_bulma$Bulma$Components$fixedNavbar,
+				surprisetalk$elm_bulma$Bulma$Modifiers$Top,
+				_Utils_update(
+					surprisetalk$elm_bulma$Bulma$Components$navbarModifiers,
+					{color: surprisetalk$elm_bulma$Bulma$Modifiers$Light}),
 				_List_Nil,
-				burger,
 				_List_fromArray(
 					[
 						A3(
-						surprisetalk$elm_bulma$Bulma$Components$navbarItem,
+						surprisetalk$elm_bulma$Bulma$Components$navbarBrand,
+						_List_Nil,
+						burger,
+						_List_fromArray(
+							[
+								A3(
+								surprisetalk$elm_bulma$Bulma$Components$navbarItem,
+								false,
+								_List_Nil,
+								_List_fromArray(
+									[
+										A2(
+										elm$html$Html$a,
+										_List_fromArray(
+											[
+												elm$html$Html$Attributes$href('/')
+											]),
+										_List_fromArray(
+											[
+												A2(
+												elm$html$Html$img,
+												_List_fromArray(
+													[
+														elm$html$Html$Attributes$src('./statics/images/logo.png')
+													]),
+												_List_Nil)
+											]))
+									]))
+							])),
+						A3(
+						surprisetalk$elm_bulma$Bulma$Components$navbarMenu,
 						false,
 						_List_Nil,
 						_List_fromArray(
 							[
 								A2(
-								elm$html$Html$a,
-								_List_fromArray(
-									[
-										elm$html$Html$Attributes$href('/')
-									]),
-								_List_fromArray(
-									[
-										A2(
-										elm$html$Html$img,
-										_List_fromArray(
-											[
-												elm$html$Html$Attributes$src('./statics/images/logo.png')
-											]),
-										_List_Nil)
-									]))
-							]))
-					])),
-				A3(
-				surprisetalk$elm_bulma$Bulma$Components$navbarMenu,
-				false,
-				_List_Nil,
-				_List_fromArray(
-					[
-						A2(
-						surprisetalk$elm_bulma$Bulma$Components$navbarStart,
-						_List_Nil,
-						_List_fromArray(
-							[
-								A3(
-								surprisetalk$elm_bulma$Bulma$Components$navbarItemLink,
-								false,
+								surprisetalk$elm_bulma$Bulma$Components$navbarStart,
 								_List_Nil,
 								_List_fromArray(
 									[
-										elm$html$Html$text('info')
+										A3(
+										surprisetalk$elm_bulma$Bulma$Components$navbarItemLink,
+										false,
+										_List_Nil,
+										_List_fromArray(
+											[
+												elm$html$Html$text('info')
+											]))
 									]))
 							]))
+					])),
+				A2(
+				surprisetalk$elm_bulma$Bulma$Layout$footer,
+				_List_Nil,
+				_List_fromArray(
+					[
+						elm$html$Html$text('hoge')
 					]))
 			]));
 }();

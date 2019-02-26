@@ -13,6 +13,7 @@ import Bulma.Components
         , navbarModifiers
         , navbarStart
         )
+import Bulma.Layout exposing (container, footer)
 import Bulma.Modifiers exposing (Color(..), VerticalAlignment(..))
 import Html exposing (Html, a, img, span, text)
 import Html.Attributes exposing (href, src)
@@ -75,26 +76,31 @@ wrapperView =
                     False
                     []
     in
-    fixedNavbar
-        Top
-        { navbarModifiers
-            | color = Light
-        }
-        []
-        [ navbarBrand []
-            burger
-            [ navbarItem False
+    container []
+        [ fixedNavbar
+            Top
+            { navbarModifiers
+                | color = Light
+            }
+            []
+            [ navbarBrand []
+                burger
+                [ navbarItem False
+                    []
+                    [ a [ href "/" ]
+                        [ img [ src "./statics/images/logo.png" ] []
+                        ]
+                    ]
+                ]
+            , navbarMenu False
                 []
-                [ a [ href "/" ]
-                    [ img [ src "./statics/images/logo.png" ] []
+                [ navbarStart []
+                    [ navbarItemLink False [] [ text "info" ]
                     ]
                 ]
             ]
-        , navbarMenu False
-            []
-            [ navbarStart []
-                [ navbarItemLink False [] [ text "info" ]
-                ]
+        , footer []
+            [ text "hoge"
             ]
         ]
 

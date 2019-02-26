@@ -1,22 +1,17 @@
+from itertools import takewhile
 from datetime import datetime, timedelta, timezone
 import json
 import os
 from pathlib import Path
 import argparse
 
+import yaml
+
 
 JST = timezone(timedelta(hours=9))
 DATA_DIR = Path(os.path.dirname(__file__)) / 'data'
-SEPARATOR = '---'
-
-
-def info_parser(data):
-    title, text = data.split(SEPARATOR)
-    return {
-        'title': title.strip(),
-        'text': text.strip(),
-    }
-
+INFO_DIR = DATA_DIR / 'info'
+INFO_RAW_DIR = INFO_DIR / 'raw'
 
 
 def read_data(src):
@@ -39,18 +34,37 @@ def about():
 
 
 def new_info():
-    data = f'TITLE HERE\n{SEPARATOR}\nTEXT HERE'
-    write_data(DATA_DIR / 'info' / 'raw' / f'{datetime.now(tz=JST).strftime("%Y%m%d")}.txt', data)
+    data = {
+        'title': None,
+        'text': None,
+    }
+    write_data(
+        INFO_RAW_DIR / f'{datetime.now(tz=JST).strftime("%Y%m%d")}.yml',
+        yaml.dump(data, default_flow_style=False)
+    )
+
+
+def info(filename):
+    data = yaml.safe_load(read_data(INFO_RAW_DIR / filename))
+    print(data)
 
 
 parser = argparse.ArgumentParser()
-subparser = parser.add_subparsers(dest='cmd')
+subparser = parser.add_subparsers()
 
 parser_about = subparser.add_parser('about')
-parser_about.set_defaults(func=about)
+parser_about.set_defaults(which='about', func=about)
 
 parser_info = subparser.add_parser('info')
+parser_info.set_defaults(which='info')
 parser_info.add_argument('--new', dest='func', const=new_info, action='store_const')
+info_subparser = parser_info.add_subparsers()
+parser_info_gen = info_subparser.add_parser('gen')
+parser_info_gen.add_argument('date', type=int)
+parser_info_gen.set_defaults(which='info_gen', func=info)
 
 args = parser.parse_args()
-args.func()
+if args.which == 'info_gen':
+    args.func(f'{args.date}.yml')
+else:
+    args.func()

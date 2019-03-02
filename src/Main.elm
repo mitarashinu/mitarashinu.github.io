@@ -13,10 +13,11 @@ import Bulma.Components
         , navbarModifiers
         , navbarStart
         )
-import Bulma.Layout exposing (container, footer)
-import Bulma.Modifiers exposing (Color(..), VerticalAlignment(..))
-import Html exposing (Html, a, img, span, text)
-import Html.Attributes exposing (href, src)
+import Bulma.Elements exposing (content)
+import Bulma.Layout exposing (SectionSpacing(..), container, footer, section)
+import Bulma.Modifiers exposing (Color(..), Size(..), VerticalAlignment(..))
+import Html exposing (Html, a, br, div, i, img, p, span, text)
+import Html.Attributes exposing (class, href, src)
 import Html.Events exposing (onClick)
 import Url exposing (Url)
 
@@ -67,8 +68,8 @@ subscriptions model =
     Sub.none
 
 
-wrapperView : Html Msg
-wrapperView =
+wrapperView : List (Html msg) -> Html msg
+wrapperView containtsView =
     let
         burger =
             List.repeat 3 (span [] [])
@@ -76,7 +77,8 @@ wrapperView =
                     False
                     []
     in
-    container []
+    section NotSpaced
+        [ class "full-height" ]
         [ fixedNavbar
             Top
             { navbarModifiers
@@ -99,8 +101,25 @@ wrapperView =
                     ]
                 ]
             ]
-        , footer []
-            [ text "hoge"
+        , container []
+            [ div [ class "containts-wrapper" ]
+                containtsView
+            ]
+        , footer [ class "fixed-bottom" ]
+            [ content Standard
+                [ class "has-text-centered" ]
+                [ span [ class "is-size-7" ]
+                    [ text "Copyright © 見たら死ぬ official website All Rights Reserved."
+                    ]
+                , br [] []
+                , span [ class "is-size-7 footer-icon" ] <|
+                    List.map
+                        (\( url, icon ) -> a [ href url ] [ i [ class <| "fa-2x fa-" ++ icon ] [] ])
+                        [ ( "mailto:mitarashinu@gmail.com", "envelope fas" )
+                        , ( "https://twitter.com/mitarashinu", "twitter fab" )
+                        , ( "https://github.com/mitarashinu/mitarashinu.github.io", "github fab" )
+                        ]
+                ]
             ]
         ]
 
@@ -110,5 +129,7 @@ view model =
     { title = "見たら死ぬ"
     , body =
         [ wrapperView
+            [ text "hoge"
+            ]
         ]
     }

@@ -5384,6 +5384,75 @@ var author$project$Main$update = F2(
 				return _Utils_Tuple2(model, elm$core$Platform$Cmd$none);
 		}
 	});
+var elm$core$List$foldrHelper = F4(
+	function (fn, acc, ctr, ls) {
+		if (!ls.b) {
+			return acc;
+		} else {
+			var a = ls.a;
+			var r1 = ls.b;
+			if (!r1.b) {
+				return A2(fn, a, acc);
+			} else {
+				var b = r1.a;
+				var r2 = r1.b;
+				if (!r2.b) {
+					return A2(
+						fn,
+						a,
+						A2(fn, b, acc));
+				} else {
+					var c = r2.a;
+					var r3 = r2.b;
+					if (!r3.b) {
+						return A2(
+							fn,
+							a,
+							A2(
+								fn,
+								b,
+								A2(fn, c, acc)));
+					} else {
+						var d = r3.a;
+						var r4 = r3.b;
+						var res = (ctr > 500) ? A3(
+							elm$core$List$foldl,
+							fn,
+							acc,
+							elm$core$List$reverse(r4)) : A4(elm$core$List$foldrHelper, fn, acc, ctr + 1, r4);
+						return A2(
+							fn,
+							a,
+							A2(
+								fn,
+								b,
+								A2(
+									fn,
+									c,
+									A2(fn, d, res))));
+					}
+				}
+			}
+		}
+	});
+var elm$core$List$foldr = F3(
+	function (fn, acc, ls) {
+		return A4(elm$core$List$foldrHelper, fn, acc, 0, ls);
+	});
+var elm$core$List$map = F2(
+	function (f, xs) {
+		return A3(
+			elm$core$List$foldr,
+			F2(
+				function (x, acc) {
+					return A2(
+						elm$core$List$cons,
+						f(x),
+						acc);
+				}),
+			_List_Nil,
+			xs);
+	});
 var elm$core$List$repeatHelp = F3(
 	function (result, n, value) {
 		repeatHelp:
@@ -5424,6 +5493,9 @@ var elm$virtual_dom$VirtualDom$toHandlerInt = function (handler) {
 	}
 };
 var elm$html$Html$a = _VirtualDom_node('a');
+var elm$html$Html$br = _VirtualDom_node('br');
+var elm$html$Html$div = _VirtualDom_node('div');
+var elm$html$Html$i = _VirtualDom_node('i');
 var elm$html$Html$img = _VirtualDom_node('img');
 var elm$html$Html$span = _VirtualDom_node('span');
 var elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
@@ -5436,6 +5508,7 @@ var elm$html$Html$Attributes$stringProperty = F2(
 			key,
 			elm$json$Json$Encode$string(string));
 	});
+var elm$html$Html$Attributes$class = elm$html$Html$Attributes$stringProperty('className');
 var elm$html$Html$Attributes$href = function (url) {
 	return A2(
 		elm$html$Html$Attributes$stringProperty,
@@ -5453,7 +5526,6 @@ var elm$core$Basics$composeL = F3(
 		return g(
 			f(x));
 	});
-var elm$html$Html$Attributes$class = elm$html$Html$Attributes$stringProperty('className');
 var surprisetalk$elm_bulma$Bulma$Classes$isBlack = elm$html$Html$Attributes$class('is-black');
 var surprisetalk$elm_bulma$Bulma$Classes$isDanger = elm$html$Html$Attributes$class('is-danger');
 var surprisetalk$elm_bulma$Bulma$Classes$isDark = elm$html$Html$Attributes$class('is-dark');
@@ -5537,7 +5609,6 @@ var surprisetalk$elm_bulma$Bulma$Components$fixedNavbar = F2(
 					}
 				}()));
 	});
-var elm$html$Html$div = _VirtualDom_node('div');
 var surprisetalk$elm_bulma$Bulma$Components$navbarBrand = F3(
 	function (attrs, burger, items) {
 		return A2(
@@ -5605,6 +5676,32 @@ var surprisetalk$elm_bulma$Bulma$Components$navbarStart = A2(
 	'div',
 	_List_fromArray(
 		[surprisetalk$elm_bulma$Bulma$Classes$navbarStart]));
+var surprisetalk$elm_bulma$Bulma$Classes$content = elm$html$Html$Attributes$class('content');
+var surprisetalk$elm_bulma$Bulma$Classes$isLarge = elm$html$Html$Attributes$class('is-large');
+var surprisetalk$elm_bulma$Bulma$Classes$isMedium = elm$html$Html$Attributes$class('is-medium');
+var surprisetalk$elm_bulma$Bulma$Classes$isSmall = elm$html$Html$Attributes$class('is-small');
+var surprisetalk$elm_bulma$Bulma$Elements$content = function (size) {
+	return A2(
+		surprisetalk$elm_bulma$Helpers$node,
+		'div',
+		_List_fromArray(
+			[
+				surprisetalk$elm_bulma$Bulma$Classes$content,
+				function () {
+				switch (size.$) {
+					case 'Small':
+						return surprisetalk$elm_bulma$Bulma$Classes$isSmall;
+					case 'Standard':
+						return surprisetalk$elm_bulma$Bulma$Classes$none;
+					case 'Medium':
+						return surprisetalk$elm_bulma$Bulma$Classes$isMedium;
+					default:
+						return surprisetalk$elm_bulma$Bulma$Classes$isLarge;
+				}
+			}()
+			]));
+};
+var surprisetalk$elm_bulma$Bulma$Layout$NotSpaced = {$: 'NotSpaced'};
 var surprisetalk$elm_bulma$Bulma$Classes$container = elm$html$Html$Attributes$class('container');
 var surprisetalk$elm_bulma$Bulma$Layout$container = A2(
 	surprisetalk$elm_bulma$Helpers$node,
@@ -5617,9 +5714,30 @@ var surprisetalk$elm_bulma$Bulma$Layout$footer = A2(
 	'footer',
 	_List_fromArray(
 		[surprisetalk$elm_bulma$Bulma$Classes$footer]));
+var surprisetalk$elm_bulma$Bulma$Classes$section = elm$html$Html$Attributes$class('section');
+var surprisetalk$elm_bulma$Bulma$Layout$section = function (spacing) {
+	return A2(
+		surprisetalk$elm_bulma$Helpers$node,
+		'section',
+		_List_fromArray(
+			[
+				surprisetalk$elm_bulma$Bulma$Classes$section,
+				function () {
+				switch (spacing.$) {
+					case 'NotSpaced':
+						return surprisetalk$elm_bulma$Bulma$Classes$none;
+					case 'Spaced':
+						return surprisetalk$elm_bulma$Bulma$Classes$isMedium;
+					default:
+						return surprisetalk$elm_bulma$Bulma$Classes$isLarge;
+				}
+			}()
+			]));
+};
 var surprisetalk$elm_bulma$Bulma$Modifiers$Light = {$: 'Light'};
+var surprisetalk$elm_bulma$Bulma$Modifiers$Standard = {$: 'Standard'};
 var surprisetalk$elm_bulma$Bulma$Modifiers$Top = {$: 'Top'};
-var author$project$Main$wrapperView = function () {
+var author$project$Main$wrapperView = function (containtsView) {
 	var burger = A3(
 		surprisetalk$elm_bulma$Bulma$Components$navbarBurger,
 		false,
@@ -5628,9 +5746,13 @@ var author$project$Main$wrapperView = function () {
 			elm$core$List$repeat,
 			3,
 			A2(elm$html$Html$span, _List_Nil, _List_Nil)));
-	return A2(
-		surprisetalk$elm_bulma$Bulma$Layout$container,
-		_List_Nil,
+	return A3(
+		surprisetalk$elm_bulma$Bulma$Layout$section,
+		surprisetalk$elm_bulma$Bulma$Layout$NotSpaced,
+		_List_fromArray(
+			[
+				elm$html$Html$Attributes$class('full-height')
+			]),
 		_List_fromArray(
 			[
 				A4(
@@ -5695,18 +5817,94 @@ var author$project$Main$wrapperView = function () {
 							]))
 					])),
 				A2(
-				surprisetalk$elm_bulma$Bulma$Layout$footer,
+				surprisetalk$elm_bulma$Bulma$Layout$container,
 				_List_Nil,
+				_List_fromArray(
+					[
+						A2(
+						elm$html$Html$div,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$class('containts-wrapper')
+							]),
+						containtsView)
+					])),
+				A2(
+				surprisetalk$elm_bulma$Bulma$Layout$footer,
+				_List_fromArray(
+					[
+						elm$html$Html$Attributes$class('fixed-bottom')
+					]),
+				_List_fromArray(
+					[
+						A3(
+						surprisetalk$elm_bulma$Bulma$Elements$content,
+						surprisetalk$elm_bulma$Bulma$Modifiers$Standard,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$class('has-text-centered')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								elm$html$Html$span,
+								_List_fromArray(
+									[
+										elm$html$Html$Attributes$class('is-size-7')
+									]),
+								_List_fromArray(
+									[
+										elm$html$Html$text('Copyright © 見たら死ぬ official website All Rights Reserved.')
+									])),
+								A2(elm$html$Html$br, _List_Nil, _List_Nil),
+								A2(
+								elm$html$Html$span,
+								_List_fromArray(
+									[
+										elm$html$Html$Attributes$class('is-size-7 footer-icon')
+									]),
+								A2(
+									elm$core$List$map,
+									function (_n0) {
+										var url = _n0.a;
+										var icon = _n0.b;
+										return A2(
+											elm$html$Html$a,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$href(url)
+												]),
+											_List_fromArray(
+												[
+													A2(
+													elm$html$Html$i,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$class('fa-2x fa-' + icon)
+														]),
+													_List_Nil)
+												]));
+									},
+									_List_fromArray(
+										[
+											_Utils_Tuple2('mailto:mitarashinu@gmail.com', 'envelope fas'),
+											_Utils_Tuple2('https://twitter.com/mitarashinu', 'twitter fab'),
+											_Utils_Tuple2('https://github.com/mitarashinu/mitarashinu.github.io', 'github fab')
+										])))
+							]))
+					]))
+			]));
+};
+var author$project$Main$view = function (model) {
+	return {
+		body: _List_fromArray(
+			[
+				author$project$Main$wrapperView(
 				_List_fromArray(
 					[
 						elm$html$Html$text('hoge')
 					]))
-			]));
-}();
-var author$project$Main$view = function (model) {
-	return {
-		body: _List_fromArray(
-			[author$project$Main$wrapperView]),
+			]),
 		title: '見たら死ぬ'
 	};
 };
@@ -5733,75 +5931,6 @@ var elm$core$Task$Perform = function (a) {
 };
 var elm$core$Task$succeed = _Scheduler_succeed;
 var elm$core$Task$init = elm$core$Task$succeed(_Utils_Tuple0);
-var elm$core$List$foldrHelper = F4(
-	function (fn, acc, ctr, ls) {
-		if (!ls.b) {
-			return acc;
-		} else {
-			var a = ls.a;
-			var r1 = ls.b;
-			if (!r1.b) {
-				return A2(fn, a, acc);
-			} else {
-				var b = r1.a;
-				var r2 = r1.b;
-				if (!r2.b) {
-					return A2(
-						fn,
-						a,
-						A2(fn, b, acc));
-				} else {
-					var c = r2.a;
-					var r3 = r2.b;
-					if (!r3.b) {
-						return A2(
-							fn,
-							a,
-							A2(
-								fn,
-								b,
-								A2(fn, c, acc)));
-					} else {
-						var d = r3.a;
-						var r4 = r3.b;
-						var res = (ctr > 500) ? A3(
-							elm$core$List$foldl,
-							fn,
-							acc,
-							elm$core$List$reverse(r4)) : A4(elm$core$List$foldrHelper, fn, acc, ctr + 1, r4);
-						return A2(
-							fn,
-							a,
-							A2(
-								fn,
-								b,
-								A2(
-									fn,
-									c,
-									A2(fn, d, res))));
-					}
-				}
-			}
-		}
-	});
-var elm$core$List$foldr = F3(
-	function (fn, acc, ls) {
-		return A4(elm$core$List$foldrHelper, fn, acc, 0, ls);
-	});
-var elm$core$List$map = F2(
-	function (f, xs) {
-		return A3(
-			elm$core$List$foldr,
-			F2(
-				function (x, acc) {
-					return A2(
-						elm$core$List$cons,
-						f(x),
-						acc);
-				}),
-			_List_Nil,
-			xs);
-	});
 var elm$core$Task$andThen = _Scheduler_andThen;
 var elm$core$Task$map = F2(
 	function (func, taskA) {
